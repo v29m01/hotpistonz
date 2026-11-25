@@ -7,7 +7,7 @@ export const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-
 // image: built-in photo used until a photo is uploaded to the "brand-<slug>" slot in the dashboard.
 export const specialistBrands = [
   {
-    name: 'Audi', group: 'German Cars', origin: 'Ingolstadt, Germany', image: 'hero-audi',
+    name: 'Audi', group: 'German Cars', origin: 'Ingolstadt, Germany', image: 'spec-audi', tiles: 'german', theme: 'audi',
     models: ['A3', 'A4', 'A6', 'A8', 'Q5', 'Q7', 'Q8', 'RS models', 'e-tron GT'],
     intro: 'From everyday A4s to RS models and the electric e-tron GT, Audis combine quattro all-wheel drive, dual-clutch and automatic gearboxes and dense on-board electronics. Our technicians service and repair them with the right diagnostic tools and quality parts.',
     focus: [
@@ -17,7 +17,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'BMW', group: 'German Cars', origin: 'Munich, Germany', image: 'hero-bmw',
+    name: 'BMW', group: 'German Cars', origin: 'Munich, Germany', image: 'spec-bmw', tiles: 'german', theme: 'bmw',
     models: ['1 Series', '3 Series', '5 Series', '7 Series', 'X3', 'X5', 'X6', 'X7', 'M models'],
     intro: 'BMWs are built for driving, and they reward careful maintenance. From 3 Series saloons to X models and M cars, we look after engines, gearboxes, cooling systems and electronics so your BMW keeps driving the way it should.',
     focus: [
@@ -27,7 +27,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Volkswagen', group: 'German Cars', origin: 'Wolfsburg, Germany', image: 'hero',
+    name: 'Volkswagen', group: 'German Cars', origin: 'Wolfsburg, Germany', image: 'hero', tiles: 'german', theme: 'vw',
     models: ['Golf', 'Golf GTI', 'Golf R', 'Passat', 'Jetta', 'Tiguan', 'Touareg', 'Teramont'],
     intro: 'From the Golf GTI and Golf R to the Tiguan, Touareg and Teramont, we provide complete Volkswagen servicing and repairs — routine maintenance, DSG and automatic gearbox work, electrical diagnostics and more.',
     focus: [
@@ -37,7 +37,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Mercedes', group: 'German Cars', origin: 'Stuttgart, Germany', image: 'hero-mercedes',
+    name: 'Mercedes', group: 'German Cars', origin: 'Stuttgart, Germany', image: 'spec-workshop', tiles: 'german', theme: 'mercedes',
     models: ['A-Class', 'C-Class', 'E-Class', 'S-Class', 'GLC', 'GLE', 'GLS', 'G-Class', 'AMG'],
     intro: 'Mercedes-Benz cars set the standard for comfort and refinement. We service and repair the full range, from the A-Class to the S-Class, G-Class and AMG models — engines, transmissions, suspension and electronics.',
     focus: [
@@ -47,7 +47,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Porsche', group: 'German Cars', origin: 'Stuttgart, Germany', image: 'speed',
+    name: 'Porsche', group: 'German Cars', origin: 'Stuttgart, Germany', image: 'spec-porsche', tiles: 'sport', theme: 'porsche',
     models: ['911', '718 Boxster', '718 Cayman', 'Cayenne', 'Macan', 'Panamera', 'Taycan'],
     intro: 'Porsches are engineered for performance, and they need technicians who treat them that way. We service and repair the 911, 718, Cayenne, Macan, Panamera and Taycan with care and precision.',
     focus: [
@@ -57,7 +57,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Maybach', group: 'German Cars', origin: 'Sindelfingen, Germany', image: 'tint',
+    name: 'Maybach', group: 'German Cars', origin: 'Sindelfingen, Germany', image: 'tint', tiles: 'luxury', theme: 'rollsroyce',
     models: ['Mercedes-Maybach S-Class', 'Mercedes-Maybach GLS'],
     intro: 'Mercedes-Maybach models are the most luxurious cars in the Mercedes family. We look after them with the attention to detail they deserve — servicing, diagnostics, suspension and interior care.',
     focus: [
@@ -127,7 +127,57 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Luxury Cars', group: 'More', origin: 'Every luxury marque', image: 'hero-bentley',
+    name: 'Lamborghini', group: 'Luxury & Sports', origin: "Sant'Agata Bolognese, Italy", image: 'spec-lamborghini', tiles: 'sport', theme: 'lamborghini',
+    models: ['Urus', 'Huracán', 'Revuelto', 'Aventador'],
+    intro: 'From the Urus to the Huracán and Aventador, Lamborghinis combine high-revving engines, all-wheel drive and advanced electronics. We service them with the precision and care these cars demand.',
+    focus: [
+      ['Performance servicing', 'Fluids, filters and inspections for high-output V8, V10 and V12 engines.'],
+      ['Brakes & tyres', 'Inspection and replacement of high-performance brakes and tyres.'],
+      ['Diagnostics', 'Fault finding on gearboxes, drive systems and electronics.'],
+    ],
+  },
+  {
+    name: 'Ferrari', group: 'Luxury & Sports', origin: 'Maranello, Italy', image: 'spec-ferrari', tiles: 'sport', theme: 'ferrari',
+    models: ['Roma', 'Portofino', '296 GTB', 'F8', 'SF90', 'Purosangue', 'Classic Ferraris'],
+    intro: 'Modern or classic, a Ferrari deserves technicians who share the passion. We look after engines, gearboxes, brakes and electronics so your Ferrari performs as it should.',
+    focus: [
+      ['Engine & cooling', 'Servicing, leak checks and cooling-system care for high-performance engines.'],
+      ['Gearbox & driveline', 'Fluid service and diagnostics for dual-clutch and manual gearboxes.'],
+      ['Paint & detailing', 'Paint correction, detailing and protection for your Ferrari\'s finish.'],
+    ],
+  },
+  {
+    name: 'McLaren', group: 'Luxury & Sports', origin: 'Woking, UK', image: 'spec-mclaren', tiles: 'sport', theme: 'mclaren',
+    models: ['GT', 'Artura', '570S', '600LT', '720S', '750S'],
+    intro: 'McLarens are engineered like race cars for the road. We service and maintain them with care — engines, gearboxes, brakes, suspension and electronics.',
+    focus: [
+      ['Performance servicing', 'Scheduled servicing for twin-turbo V8 and hybrid powertrains.'],
+      ['Brakes & suspension', 'Inspection of high-performance brakes, tyres and suspension.'],
+      ['Electronic diagnostics', 'Fault finding for warning lights, sensors and electronics.'],
+    ],
+  },
+  {
+    name: 'Rolls-Royce', group: 'Luxury & Sports', origin: 'Goodwood, UK', image: 'spec-rollsroyce', tiles: 'luxury', theme: 'rollsroyce',
+    models: ['Phantom', 'Ghost', 'Cullinan', 'Wraith', 'Dawn', 'Spectre'],
+    intro: 'A Rolls-Royce is built for effortless comfort. We look after the Phantom, Ghost, Cullinan and more with discreet collection, careful handling and attention to every detail.',
+    focus: [
+      ['Discreet collection', 'Pick-up and drop-off with careful handling from start to finish.'],
+      ['Ride & comfort systems', 'Diagnostics for air suspension and comfort electronics.'],
+      ['Interior & coachwork care', 'Detailing, paint and body care to keep your car immaculate.'],
+    ],
+  },
+  {
+    name: 'Bugatti', group: 'Luxury & Sports', origin: 'Molsheim, France', image: 'spec-bugatti', tiles: 'sport', theme: 'bugatti',
+    models: ['Chiron', 'Veyron', 'Divo'],
+    intro: 'Bugattis are among the most exclusive cars on the road. Talk to us about careful inspection, detailing, paint protection and maintenance support for your Bugatti.',
+    focus: [
+      ['Careful inspection', 'A thorough check before any work, with a detailed quote.'],
+      ['Detailing & protection', 'Cleaning, polishing and paint protection for rare finishes.'],
+      ['Tyres & brakes', 'Inspection of tyres and brakes for safe driving.'],
+    ],
+  },
+  {
+    name: 'Luxury Cars', group: 'Luxury & Sports', origin: 'Every luxury marque', image: 'spec-rollsroyce', tiles: 'luxury', theme: 'rollsroyce',
     models: ['Rolls-Royce', 'Bentley', 'Mercedes-Maybach', 'Range Rover', 'Maserati', 'Lexus', 'Jaguar'],
     intro: 'We specialise in all car repairs, including luxury car repairs. Bentley, Rolls-Royce, Range Rover, Maserati, Lexus, Jaguar and more are serviced with the care, tools and attention to detail luxury cars need.',
     focus: [
@@ -137,7 +187,7 @@ export const specialistBrands = [
     ],
   },
   {
-    name: 'Sports Cars', group: 'More', origin: 'Performance cars', image: 'supercar',
+    name: 'Sports Cars', group: 'Luxury & Sports', origin: 'Performance cars', image: 'spec-lamborghini', tiles: 'sport', theme: 'lamborghini',
     models: ['Porsche', 'Ferrari', 'Lamborghini', 'McLaren', 'Mercedes-AMG', 'BMW M', 'Audi RS'],
     intro: 'From Porsche and AMG to Ferrari, Lamborghini and McLaren, sports cars need precise servicing. We look after engines, gearboxes, brakes and tyres so your car performs as it should.',
     focus: [
@@ -192,3 +242,50 @@ export const brandFaqs = (brand) => [
   ['Will I get a quote before any work begins?', 'Yes. We inspect the car and explain the work needed and the cost before we start.'],
   ['Are you available on weekends and holidays?', 'Yes. We are available 24/7, including holidays.'],
 ];
+
+// ---- Brand page look: one colour scheme per marque (see .bp in global.css) ----
+// mode: hero/section tone · tiles: outline | card | solid | soft | glass
+export const brandThemes = {
+  default: { mode: 'dark', accent: '#F28C28', onAccent: '#111', title: '#fff', ground: '#0E0E10', section: '#fff', tiles: 'card', strip: '#141416' },
+  audi: { mode: 'light', accent: '#BB0A30', onAccent: '#fff', title: '#fff', ground: '#111', section: '#fff', tiles: 'outline', strip: '#1A1A1A' },
+  bmw: { mode: 'light', accent: '#1C69D4', onAccent: '#fff', title: '#fff', titleAccent: '#5BA4FF', ground: '#101418', section: '#fff', tiles: 'card', strip: '#262A30' },
+  mercedes: { mode: 'light', accent: '#2C8C99', onAccent: '#fff', title: '#fff', ground: '#0F1414', section: '#fff', tiles: 'card', strip: '#1C2526' },
+  vw: { mode: 'light', accent: '#0F4C9C', onAccent: '#fff', title: '#fff', ground: '#0B1426', section: '#fff', tiles: 'card', strip: '#0B1E3F' },
+  porsche: { mode: 'dark', accent: '#D5001C', onAccent: '#fff', title: '#E9ECF2', ground: '#070B14', section: '#0B1220', tiles: 'glass', line: '#2E4A78', strip: '#0E1A33' },
+  lamborghini: { mode: 'dark', accent: '#FFC000', onAccent: '#111', title: '#FFC000', ground: '#000', section: '#fff', tiles: 'solid', strip: '#000' },
+  ferrari: { mode: 'dark', accent: '#E10600', onAccent: '#fff', icon: '#FFD200', title: '#FFD200', ground: '#0A0000', section: '#fff', tiles: 'solid', strip: '#0A0A0A', nav: '#C40000' },
+  mclaren: { mode: 'dark', accent: '#FF8000', onAccent: '#111', title: '#FF9A2E', ground: '#060606', section: '#fff', tiles: 'solid', strip: '#0A0A0A' },
+  rollsroyce: { mode: 'dark', accent: '#C8A464', onAccent: '#141A33', title: '#E2C98F', ground: '#0E1226', section: '#fff', tiles: 'soft', soft: '#F4ECDD', strip: '#141A33' },
+  bugatti: { mode: 'dark', accent: '#1F6FD1', onAccent: '#fff', title: '#E9EEF8', ground: '#050A16', section: '#070D1C', tiles: 'glass', line: '#244A86', strip: '#0B1530' },
+};
+
+// Six service tiles per brand type. Each links to a real service page.
+export const brandTiles = {
+  german: [
+    ['Engine Service', 'engine', 'Diagnostics, maintenance and repair to keep your engine healthy.', 'auto-mechanical-services'],
+    ['Engine Oil Change', 'oil', 'Quality oil and filter changes to the right specification.', 'auto-engine-oil-change-service-in-dubai'],
+    ['Transmission Service', 'gear', 'Fluid service and repair for smooth, responsive shifting.', 'auto-transmission-service-gear-oil-filter-gear-oil-chamber-gasket'],
+    ['Suspension & Steering', 'shock', 'Checks and repairs for comfort, control and alignment.', 'auto-mechanical-services'],
+    ['AC & Cooling', 'snow', 'Cooling-system and climate checks for the UAE heat.', 'auto-mechanical-services'],
+    ['Electrical & Diagnostics', 'chip', 'Computer diagnostics for warning lights and electronics.', 'auto-electrical-services'],
+  ],
+  sport: [
+    ['Engine & Performance', 'engine', 'Servicing and diagnostics for high-output engines.', 'auto-mechanical-services'],
+    ['Body & Paintwork', 'body', 'Denting, painting and paint correction to a high finish.', 'auto-denting-painting'],
+    ['Brake System', 'brake', 'Inspection and replacement of high-performance brakes.', 'auto-mechanical-services'],
+    ['Transmission & Drive', 'gear', 'Gearbox diagnostics, fluid service and overhauls.', 'auto-transmission-overhauling'],
+    ['Suspension & Dynamics', 'shock', 'Suspension, alignment and tyre care for precise handling.', 'auto-tire-service'],
+    ['Electronic Diagnostics', 'chip', 'Fault finding for sensors, control units and electrics.', 'auto-electrical-services'],
+  ],
+  luxury: [
+    ['Bespoke Detailing', 'sparkle', 'Interior and exterior detailing for an immaculate finish.', 'auto-interior-and-exterior-detailing'],
+    ['Engine Care', 'engine', 'Servicing and diagnostics for smooth, quiet power.', 'auto-mechanical-services'],
+    ['Coachwork & Body', 'body', 'Denting, painting and paint protection.', 'auto-denting-painting'],
+    ['Transmission & Driveline', 'gear', 'Gearbox servicing and repair for effortless shifting.', 'auto-transmission-service-gear-oil-filter-gear-oil-chamber-gasket'],
+    ['Suspension & Ride', 'shock', 'Air-suspension and ride-comfort diagnostics.', 'auto-mechanical-services'],
+    ['Electrical Diagnostics', 'chip', 'Diagnostics for comfort systems, sensors and electrics.', 'auto-electrical-services'],
+  ],
+};
+
+// Kept to what the live site states (no "certified", "genuine" or "warranty" claims).
+export const brandWhy = ['Experienced technicians', 'Quality components', 'Latest tools & technology', 'Pick-up & drop-off', 'Available 24/7, incl. holidays'];

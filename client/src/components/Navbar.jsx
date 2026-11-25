@@ -3,7 +3,7 @@ import Icon from './Icon';
 import Logo from './Logo';
 import { Link } from '../router';
 import { areas, brandSpecialist, business, nav, wa } from '../data/content';
-import { slugify } from '../data/specialist';
+import { slugify, specialistBrands } from '../data/specialist';
 import { services, serviceCategories } from '../data/services';
 
 function ServicesMenu() {
@@ -23,22 +23,25 @@ function ServicesMenu() {
 }
 
 function BrandsMenu() {
+  const german = specialistBrands.filter((b) => b.group === 'German Cars');
+  const more = specialistBrands.filter((b) => b.group !== 'German Cars');
   return (
     <div className="container mega__inner mega__inner--brands">
       <div className="mega__col mega__col--wide">
         <h5>German Cars</h5>
         <div className="mega__grid">
-          {brandSpecialist.german.map((b) => (
-            <Link key={b} to={`/brand-specialist/${slugify(b)}`} className="mega__link"><Icon name="chevron-r" size={14} /> {b}</Link>
+          {german.map((b) => (
+            <Link key={b.slug} to={`/brand-specialist/${b.slug}`} className="mega__link"><Icon name="chevron-r" size={14} /> {b.name}</Link>
           ))}
         </div>
       </div>
-      <div className="mega__col">
-        <h5>More</h5>
-        {brandSpecialist.other.map((b) => (
-          <Link key={b} to={`/brand-specialist/${slugify(b)}`} className="mega__link"><Icon name="chevron-r" size={14} /> {b}</Link>
-        ))}
-        <Link to="/car-brands" className="mega__link"><Icon name="chevron-r" size={14} /> All car brands</Link>
+      <div className="mega__col mega__col--wide">
+        <h5>Luxury &amp; Sports</h5>
+        <div className="mega__grid mega__grid--2">
+          {more.map((b) => (
+            <Link key={b.slug} to={`/brand-specialist/${b.slug}`} className="mega__link"><Icon name="chevron-r" size={14} /> {b.name}</Link>
+          ))}
+        </div>
       </div>
       <Link to="/brand-specialist" className="mega__all"><span>All brands</span> <Icon name="arrow" size={18} /></Link>
     </div>
