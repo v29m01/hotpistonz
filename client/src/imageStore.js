@@ -8,7 +8,11 @@ const emit = () => listeners.forEach((l) => l());
 // Built-in files. Slots listed in MEDIA have no generated default; set a path here
 // when a file is added to client/public/media (e.g. logo: 'media/logo.png').
 export const MEDIA = { logo: 'media/logo.png', 'logo-light': 'media/logo.png', 'hero-video': null };
-export const defaultUrl = (name) => (name in MEDIA ? MEDIA[name] : `images/${name}.jpg`);
+/* global __ROUTER_MODE__ */
+// Clean URLs (/brand-specialist/audi) need paths from the site root; the hash-routed preview needs relative ones.
+const BASE = (typeof __ROUTER_MODE__ !== 'undefined' ? __ROUTER_MODE__ : 'path') === 'path' ? '/' : '';
+const local = (p) => (p ? BASE + p : p);
+export const defaultUrl = (name) => (name in MEDIA ? local(MEDIA[name]) : `${BASE}images/${name}.jpg`);
 export const imageUrl = (name) => overrides[name] || defaultUrl(name);
 export const isCustom = (name) => Boolean(overrides[name]);
 
