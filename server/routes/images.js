@@ -15,7 +15,7 @@ const STORAGE = process.env.BLOB_READ_WRITE_TOKEN ? 'blob' : 'disk';
 const router = Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const UPLOAD_DIR = path.join(__dirname, '../uploads');
-if (STORAGE === 'disk') {
+if (STORAGE === 'disk' && !process.env.VERCEL) {
   try { fs.mkdirSync(UPLOAD_DIR, { recursive: true }); } catch { /* read-only file system */ }
 }
 
@@ -88,20 +88,24 @@ router.post('/:slot/url', adminAuth, async (req, res, next) => {
 });
 
 // ---------- Disk storage: the file is sent to the server ----------
-const upload = multer({
+// Created on first use, and the folder is made only then: Vercel's file system is read-only,
+// so touching the disk when the server starts would crash every API request there.
+let upload;
+const getUpload = () => upload || (upload = multer({
   storage: multer.diskStorage({
-    destination: UPLOAD_DIR,
+    destination: (_req, _file, cb) => fs.mkdir(UPLOAD_DIR, { recursive: true }, (err) => cb(err, UPLOAD_DIR)),
     filename: (req, file, cb) => cb(null, `${req.params.slot}-${Date.now()}${TYPES[file.mimetype]}`),
   }),
   limits: { fileSize: MAX_VIDEO },
   fileFilter: (_req, file, cb) => cb(null, Boolean(TYPES[file.mimetype])),
-});
+}));
 
 // POST /api/images/:slot — admin: upload (field name "image")
 router.post('/:slot', adminAuth, (req, res, next) => {
   if (STORAGE === 'blob') return res.status(400).json({ message: 'Uploads go to Vercel Blob. Please reload the dashboard and try again.' });
+  if (process.env.VERCEL) return res.status(503).json({ message: 'Uploads need Vercel Blob storage. In Vercel: Storage → Create → Blob → connect it to this project, then redeploy.' });
   if (!SLOT.test(req.params.slot)) return res.status(400).json({ message: 'Invalid image slot' });
-  upload.single('image')(req, res, async (err) => {
+  getUpload().single('image')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: err.code === 'LIMIT_FILE_SIZE' ? 'File must be under 60 MB' : err.message });
     if (!req.file) return res.status(400).json({ message: 'Please choose a JPG, PNG, WebP or AVIF image, or an MP4/WebM video' });
     if (req.file.mimetype.startsWith('image/') && req.file.size > MAX_IMAGE) {
